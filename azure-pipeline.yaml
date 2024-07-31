@@ -24,9 +24,11 @@ steps:
 
 - task: VSBuild@1
   inputs:
+    msbuildArgs: '/p:OutDir=$(Build.ArtifactStagingDirectory) /p:WebPublishMethod=Package'
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    clean: true
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
